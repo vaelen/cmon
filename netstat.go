@@ -41,6 +41,11 @@ func FindMode() Mode {
 	if err == nil {
 		return SS
 	}
+	cmd = exec.Command("netstat")
+	_, err2 := cmd.Output()
+	if err2 != nil {
+		log.Panicf("Need either ss or netstat.\n%s\n%s", err.Error(), err2.Error())
+	}
 	return NETSTAT
 }
 
