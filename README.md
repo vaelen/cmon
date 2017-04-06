@@ -1,6 +1,13 @@
 # CMon
 A Simple Connection Monitor Written in Go
 
+# Installation
+
+To install CMon, simply run:
+```
+go get github.com/vaelen/cmon/cmds/cmon
+```
+
 # Example Output
 
 The output is well formatted MarkDown.
