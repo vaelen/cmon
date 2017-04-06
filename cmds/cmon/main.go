@@ -29,7 +29,7 @@ import (
 )
 
 const DefaultFilter string = ""
-const DefaultPrintInterval = time.Second * 2
+const DefaultPrintInterval = time.Minute * 1
 
 func main() {
 	log.SetOutput(os.Stderr)
