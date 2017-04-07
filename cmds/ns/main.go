@@ -20,9 +20,8 @@
 package main
 
 import (
-	"log"
-
 	"github.com/vaelen/cmon"
+	"log"
 )
 
 func main() {

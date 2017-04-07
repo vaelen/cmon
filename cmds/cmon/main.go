@@ -20,13 +20,12 @@
 package main
 
 import (
+	"github.com/vaelen/cmon"
 	"log"
 	"net"
 	"os"
 	"strings"
 	"time"
-
-	"github.com/bretep/cmon"
 )
 
 const DefaultFilter string = ""
