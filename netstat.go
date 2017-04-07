@@ -60,7 +60,7 @@ func Connections(mode Mode) []Event {
 		srcField = 3
 		dstField = 4
 	default:
-		cmd = exec.Command("netstat", "-tn")
+		cmd = exec.Command("netstat", "-f", "inet", "-f", "inet6")
 		minFields = 5
 		stateField = 5
 		srcField = 3
