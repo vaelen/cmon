@@ -26,7 +26,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/vaelen/cmon"
+	"github.com/bretep/cmon"
 )
 
 const DefaultFilter string = ""
