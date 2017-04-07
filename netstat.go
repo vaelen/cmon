@@ -20,10 +20,9 @@
 package cmon
 
 import (
-	"os/exec"
-	//"fmt"
 	"log"
 	"net"
+	"os/exec"
 	"strconv"
 	"strings"
 )

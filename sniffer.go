@@ -37,7 +37,7 @@ type SnifferConfig struct {
 }
 
 func packetSniffer(c SnifferConfig) {
-	if handle, err := pcap.OpenLive(c.IfName, 1600, true, pcap.BlockForever); err != nil {
+	if handle, err := pcap.OpenLive(c.IfName, 60, true, pcap.BlockForever); err != nil {
 		log.Panicf("Couldn't Open Interface %s, Error: %s\n", c.IfName, err.Error())
 	} else if err := handle.SetBPFFilter(c.Filter); err != nil { // optional
 		log.Panicf("Couldn't Set Filter on Interface %s, Filter: %s, Error: %s\n", c.IfName, c.Filter, err.Error)
