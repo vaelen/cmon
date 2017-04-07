@@ -1,20 +1,20 @@
 /*
-    This file is part of CMon.
+   This file is part of CMon.
 
-    Copyright 2017, Andrew Young <andrew@vaelen.org>
+   Copyright 2017, Andrew Young <andrew@vaelen.org>
 
-    CMon is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+   CMon is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
 
-    CMon is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+   CMon is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with CMon.  If not, see <http://www.gnu.org/licenses/>.
+   You should have received a copy of the GNU General Public License
+   along with CMon.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 package cmon
@@ -52,7 +52,7 @@ func FindMode() Mode {
 func Connections(mode Mode) []Event {
 	var cmd *exec.Cmd
 	var minFields, stateField, srcField, dstField int
-	
+
 	switch mode {
 	case SS:
 		cmd = exec.Command("ss", "-tn")
@@ -67,12 +67,12 @@ func Connections(mode Mode) []Event {
 		srcField = 3
 		dstField = 4
 	}
-	
+
 	out, err := cmd.Output()
 	if err != nil {
 		log.Fatalf("Could not retrieve active port list.  Command: %s, Error: %s\n", cmd, err)
 	}
-	
+
 	conns := make([]Event, 0)
 	for _, s := range strings.Split(string(out), "\n") {
 		fields := strings.Fields(s)
@@ -80,7 +80,7 @@ func Connections(mode Mode) []Event {
 			stateString := fields[stateField]
 			src := fields[srcField]
 			dst := fields[dstField]
-		
+
 			srcIP, srcPort, _ := net.SplitHostPort(src)
 			dstIP, dstPort, _ := net.SplitHostPort(dst)
 			state := OTHER
@@ -90,13 +90,13 @@ func Connections(mode Mode) []Event {
 
 			sp, _ := strconv.Atoi(srcPort)
 			dp, _ := strconv.Atoi(dstPort)
-		
+
 			e := Event{
-				SrcIP: net.ParseIP(srcIP),
+				SrcIP:   net.ParseIP(srcIP),
 				SrcPort: uint16(sp),
-				DstIP: net.ParseIP(dstIP),
+				DstIP:   net.ParseIP(dstIP),
 				DstPort: uint16(dp),
-				State: state,
+				State:   state,
 			}
 			conns = append(conns, e)
 		}
